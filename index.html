@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $('.arrow').click(function(){
+                        var dir = $(this).data('direction');
+                        vSpos = $('#cb').offset().top;
+                        hSpos = $('#cb').offset().left;
+                        mov = $('#cb').width() + 2;
+
+                        lLim = $('#boxContainer').offset().left;
+                        rLim = lLim+2*mov;
+
+                        tLim = $('#boxContainer').offset().top;
+                        bLim = tLim+2*mov;
+
+                        switch(dir){
+                            case('left'):
+                            if(hSpos == lLim){
+                                alert("Can't move left");
+                            }
+                            else{
+                                hSpos = hSpos - mov;
+                                $('#cb').offset({left:hSpos});
+                            }
+                            break;
+                            case('right'):
+                                if(hSpos == rLim){
+                                    alert("Can't move right");
+                                }
+                                else{
+                                    hSpos = hSpos + mov;
+                                    $('#cb').offset({left:hSpos});
+                                }
+                                break;
+                            case('down'):
+                                if(vSpos == bLim){
+                                    alert("Can't move down");
+                                }
+                                else{
+                                    vSpos = vSpos + mov;
+                                    $('#cb').offset({top:vSpos});
+                                }
+                                break;
+                            case('up'):
+                                if(vSpos == tLim){
+                                    alert("Can't move up");
+                                }
+                                else{
+                                    vSpos = vSpos - mov;
+                                    $('#cb').offset({top:vSpos});
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
+                    })
+                })
+            </script>
+            <link rel=stylesheet href=style.css />
+        </head>
+
+        <body>
+            <div id=boxMoverContainer>
+                <div id=boxContainer>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box" id="cb"></div>
+                </div>
+                <div id=controlContainer>
+                    <ul id=controls>
+                        <li class="arrow" data-direction=up>Up</li>
+                        <li class="arrow" data-direction=down>Down</li>
+                        <li class="arrow" data-direction=left>Left</li>
+                        <li class="arrow" data-direction=right>Right</li>
+                    </ul>
+                </div>
+            </div>
+        </body>
+    </html>
